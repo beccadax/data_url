@@ -10,8 +10,8 @@ module DataURL
     scheme, content_type, encoded_data = url.split(%r/[:,]/, 3)
     fail "Not a data URI: #{url}" if scheme != 'data' or encoded_data.nil?
 
-    content_type = "application/octet-stream" if content_type.empty?
     base64 = not(content_type.sub!(';base64', '').nil?)
+    content_type = "application/octet-stream" if content_type.empty?
     
     data = if base64 
       Base64.decode64(encoded_data)
