@@ -30,6 +30,10 @@ describe DataURL do
       expect { DataURL.parse('http://google.com/some,thing') }.to raise_error DataURL::InvalidURLError
     end
     
+    it "should raise an exception for data URL with the content-type field and delimiter missing" do
+      expect { DataURL.parse('data:gibberish') }.to raise_error DataURL::InvalidURLError
+    end
+    
     it "should ignore invalid crap in base64'd data" do
       DataURL.parse('data:;base64,YWJj!YWJj').first.should == 'abcabc'
     end
