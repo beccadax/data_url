@@ -5,10 +5,10 @@ require 'uri'
 
 module DataURL
   def self.parse(url)
-    return nil, nil, nil if str.nil? or str.empty?
+    return nil, nil, nil if url.nil? or url.empty?
     
-    scheme, content_type, encoded_data = str.split(%r/[:,]/, 3)
-    fail "Not a data URI: #{str}" if scheme != 'data' or encoded_data.nil?
+    scheme, content_type, encoded_data = url.split(%r/[:,]/, 3)
+    fail "Not a data URI: #{url}" if scheme != 'data' or encoded_data.nil?
 
     content_type = "application/octet-stream" if content_type.empty?
     base64 = not(content_type.sub!(';base64', '').nil?)
