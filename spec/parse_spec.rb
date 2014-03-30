@@ -29,5 +29,9 @@ describe DataURL do
     it "should raise an exception for non-data URLs" do
       expect { DataURL.parse('http://google.com/some,thing') }.to raise_error DataURL::InvalidURLError
     end
+    
+    it "should ignore invalid crap in base64'd data" do
+      DataURL.parse('data:;base64,YWJj!YWJj').first.should == 'abcabc'
+    end
   end
 end
