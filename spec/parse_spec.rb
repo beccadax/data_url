@@ -6,23 +6,23 @@ describe DataURL do
       DataURL.parse(nil).should == [nil, nil, nil]
     end
     
-    it "should return empty string for empty data" do
+    it "should return empty body for empty URL" do
       DataURL.parse('data:,').first.should == ''
     end
     
-    it "should parse base64'd data as base64" do
+    it "should parse base64'd bodies as base64" do
       DataURL.parse('data:;base64,YWJj').first.should == 'abc'
     end
     
-    it "should return a true base64 flag for base64'd data" do
+    it "should return a true base64 flag for base64'd bodies" do
       DataURL.parse('data:;base64,YWJj').last.should be_true
     end
     
-    it "should parse URL-encoded data as URL-encoded" do
+    it "should parse URL-encoded bodies as URL-encoded" do
       DataURL.parse('data:,abc%20').first.should == 'abc '
     end
     
-    it "should return a false base64 flag for URL-encoded data" do
+    it "should return a false base64 flag for URL-encoded bodies" do
       DataURL.parse('data:,abc%20').last.should be_false
     end
     
@@ -50,11 +50,11 @@ describe DataURL do
       expect { DataURL.parse('data:gibberish') }.to raise_error DataURL::InvalidURLError
     end
     
-    it "should ignore invalid crap in base64'd data" do
+    it "should ignore invalid crap in base64'd bodies" do
       DataURL.parse('data:;base64,YWJj!YWJj').first.should == 'abcabc'
     end
     
-    it "should ignore escaped invalid crap in base64'd data" do
+    it "should ignore escaped invalid crap in base64'd bodies" do
       DataURL.parse('data:;base64,YWJj%20YWJj').first.should == 'abcabc'
     end
   end

@@ -18,17 +18,17 @@ Or install it yourself as:
 
 ## Usage
 
-The `DataURL` module has two methods. `parse` is used to parse the data and other information out of a data URL:
+The `DataURL` module has two methods. `parse` is used to parse the body and other information out of a data URL:
 
-    data, content_type, base64 = DataURL.parse(data_url)
+    body, content_type, base64 = DataURL.parse(data_url)
     # Feel free to ignore the base64 return value
 
-The other, `create`, generates a data URL containing the data and other information you want it to include:
+The other, `create`, generates a data URL containing the body and other information you want it to include:
 
-    data_url = DataURL.create(data, content_type, base64)
+    data_url = DataURL.create(body, content_type, base64)
     # Last two parameters default to 'application/octet-stream' and 'true'
 
-`DataURL` imposes no restrictions on data length, and the test suite. It implements even fairly obscure features of RFC 2397, like URL-encoded bodies and empty content-type field handling.
+`DataURL` imposes no restrictions on data length, and does not insert newlines or other whitespace into Base64 bodies. It implements even fairly obscure features of RFC 2397, like URL-encoded bodies and empty content-type field handling.
 
 ## Contributing
 
