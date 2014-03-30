@@ -1,4 +1,4 @@
-require "DataURL/version"
+require "data_url/version"
 
 require 'base64'
 require 'uri'

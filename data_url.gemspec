@@ -1,10 +1,10 @@
 # coding: utf-8
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'DataURL/version'
+require 'data_url/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = "DataURL"
+  spec.name          = "data_url"
   spec.version       = DataURL::VERSION
   spec.authors       = ["Brent Royal-Gordon"]
   spec.email         = ["brent@groundbreakingsoftware.com"]

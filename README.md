@@ -6,7 +6,7 @@ DataURL helps you parse and create data: URLs.
 
 Add this line to your application's Gemfile:
 
-    gem 'DataURL'
+    gem 'data_url'
 
 And then execute:
 
@@ -14,11 +14,11 @@ And then execute:
 
 Or install it yourself as:
 
-    $ gem install DataURL
+    $ gem install data_url
 
 ## Usage
 
-DataURL has two methods. `parse` is used to parse the data and other information out of a data URL:
+The `DataURL` module has two methods. `parse` is used to parse the data and other information out of a data URL:
 
     data, content_type, base64 = DataURL.parse(data_url)
     # Feel free to ignore the base64 return value
