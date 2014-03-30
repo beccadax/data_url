@@ -4,7 +4,7 @@ require 'base64'
 require 'uri'
 
 module DataURL
-  def parse(url)
+  def self.parse(url)
     return nil, nil, nil if str.nil? or str.empty?
     
     scheme, type, encoded_data = str.split(%r/[:,]/, 3)
@@ -23,7 +23,7 @@ module DataURL
     
   end
   
-  def create(data, content_type = 'application/octet-stream', base64 = true)
+  def self.create(data, content_type = 'application/octet-stream', base64 = true)
     return nil if data.nil?
     
     encoded_data = if base64
