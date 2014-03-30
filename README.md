@@ -28,6 +28,8 @@ The other, `create`, generates a data URL containing the data and other informat
     data_url = DataURL.create(data, content_type, base64)
     # Last two parameters default to 'application/octet-stream' and 'true'
 
+`DataURL` imposes no restrictions on data length, and the test suite. It implements even fairly obscure features of RFC 2397, like URL-encoded bodies and empty content-type field handling.
+
 ## Contributing
 
 1. Fork it
