@@ -33,5 +33,9 @@ describe DataURL do
     it "should ignore invalid crap in base64'd data" do
       DataURL.parse('data:;base64,YWJj!YWJj').first.should == 'abcabc'
     end
+    
+    it "should ignore escaped invalid crap in base64'd data" do
+      DataURL.parse('data:;base64,YWJj%20YWJj').first.should == 'abcabc'
+    end
   end
 end

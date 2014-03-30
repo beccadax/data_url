@@ -13,14 +13,10 @@ module DataURL
     base64 = not(content_type.sub!(';base64', '').nil?)
     content_type = "application/octet-stream" if content_type.empty?
     
-    data = if base64 
-      Base64.decode64(encoded_data)
-    else
-      URI.unescape(encoded_data)
-    end
+    data = URI.unescape(encoded_data)
+    data = Base64.decode64(data) if base64 
     
     return data, content_type, base64
-    
   end
   
   def self.create(data, content_type = 'application/octet-stream', base64 = true)
@@ -30,8 +26,9 @@ module DataURL
       content_type += ";base64"
       Base64.strict_encode64(data)
     else
-      URI.escape(data)
+      data
     end
+    encoded_data = URI.escape(encoded_data)
     
     "data:#{content_type},#{encoded_data}"
   end
