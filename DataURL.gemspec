@@ -8,8 +8,8 @@ Gem::Specification.new do |spec|
   spec.version       = DataURL::VERSION
   spec.authors       = ["Brent Royal-Gordon"]
   spec.email         = ["brent@groundbreakingsoftware.com"]
-  spec.summary       = %q{Parse and create data: URLs}
-  spec.description   = %q{TODO: Write a longer description. Optional.}
+  spec.summary       = %q{Data URL support}
+  spec.description   = %q{Parse and create data: URLs}
   spec.homepage      = ""
   spec.license       = "MIT"
 
