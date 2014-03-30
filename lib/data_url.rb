@@ -8,7 +8,7 @@ module DataURL
     return nil, nil, nil if url.nil? or url.empty?
     
     scheme, content_type, encoded_data = url.split(%r/[:,]/, 3)
-    fail "Not a data URI: #{url}" if scheme != 'data' or encoded_data.nil?
+    raise InvalidURLError, "Can't parse as data URL: #{url}" if scheme != 'data' or encoded_data.nil?
 
     base64 = not(content_type.sub!(';base64', '').nil?)
     content_type = "application/octet-stream" if content_type.empty?
@@ -35,4 +35,6 @@ module DataURL
     
     "data:#{content_type},#{encoded_data}"
   end
+  
+  class InvalidURLError < StandardError; end
 end

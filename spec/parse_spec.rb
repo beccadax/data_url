@@ -21,5 +21,13 @@ describe DataURL do
     it "should parse out content types" do
       DataURL.parse('data:text/plain,').should == ['', 'text/plain', false]
     end
+    
+    it "should raise an exception for invalid strings" do
+      expect { DataURL.parse('gibberish') }.to raise_error DataURL::InvalidURLError
+    end
+    
+    it "should raise an exception for non-data URLs" do
+      expect { DataURL.parse('http://google.com/some,thing') }.to raise_error DataURL::InvalidURLError
+    end
   end
 end
