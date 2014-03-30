@@ -11,7 +11,9 @@ module DataURL
     raise InvalidURLError, "Can't parse as data URL: #{url}" if scheme != 'data' or data.nil?
 
     base64 = not(content_type.sub!(';base64', '').nil?)
-    content_type = "application/octet-stream" if content_type.empty?
+    
+    content_type = "text/plain;charset=US-ASCII" if content_type.empty?
+    content_type = "text/plain" + content_type if content_type =~ /\A;/
     
     data = Base64.decode64(data) if base64 
     

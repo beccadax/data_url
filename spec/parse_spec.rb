@@ -11,15 +11,23 @@ describe DataURL do
     end
     
     it "should parse base64'd data as base64" do
-      DataURL.parse('data:;base64,YWJj').should == ['abc', 'application/octet-stream', true]
+      DataURL.parse('data:;base64,YWJj').should == ['abc', 'text/plain;charset=US-ASCII', true]
     end
     
     it "should parse URL-encoded data as URL-encoded" do
-      DataURL.parse('data:,abc%20').should == ['abc ', 'application/octet-stream', false]
+      DataURL.parse('data:,abc%20').should == ['abc ', 'text/plain;charset=US-ASCII', false]
     end
     
     it "should parse out content types" do
-      DataURL.parse('data:text/plain,').should == ['', 'text/plain', false]
+      DataURL.parse('data:application/octet-stream,').should == ['', 'application/octet-stream', false]
+    end
+    
+    it "should default to ASCII text/plain" do
+      DataURL.parse('data:,')[1].should == 'text/plain;charset=US-ASCII'
+    end
+    
+    it "should default to text/plain when a charset is specified" do
+      DataURL.parse('data:;charset=UTF-8,')[1].should == 'text/plain;charset=UTF-8'
     end
     
     it "should raise an exception for invalid strings" do
